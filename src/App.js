@@ -26,7 +26,7 @@ class App extends Component {
             this.state.component = new IDVC({
               networkUrl: "networks",
               el: "videoCapturingEl",
-              licenseKey: "REPLACE_ME",
+              licenseKey: "",
               types: ["ID"],
               showSubmitBtn: true,
               steps: [
@@ -63,14 +63,14 @@ class App extends Component {
                   method: "POST",
                   headers: {
                     "Content-Type": "application/json;charset=utf-8",
-                    Authorization: `Bearer REPLACE_ME`,
+                    Authorization: `Bearer `,
                   },
                   body: JSON.stringify(request),
                 })
                   .then((response) => response.json())
                   .then((response) => {
                     fetch(
-                      ""REPLACE_ME"/api/ValidationRequests/complete/",
+                      "" + "/api/ValidationRequests/complete/",
                       {
                         method: "POST",
                         headers: {
