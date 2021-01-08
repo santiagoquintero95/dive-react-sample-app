@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import './style.css'
+import "../node_modules/@idscan/idvc/dist/css/idvc.css";
 import IDVC from '@idscan/idvc'
 import  '@idscan/idvc/dist/css/idvc.css'
 
 class App extends Component {
     
-    publicKey = 'REPLACE_ME';
-    backendServerUrl = '"REPLACE_ME"';
-    licenseKey = 'REPLACE_ME';
+    licenseKey = '';
 
 
     constructor(props) {
@@ -25,63 +23,79 @@ class App extends Component {
     componentDidMount () {
         let _t = this
         if (!this.state.component) {
-            this.state.component = new IDVC ({
-                networkUrl: 'networks',
-                el: 'videoCapturingEl',
-                licenseKey: this.licenseKey,
-                types: ['ID'],
-                showSubmitBtn: true,
-                steps: [
-                    {type: 'front', name: 'Front Scan'},
-                    {type: 'back', name: 'Back Scan'},
-                    {type: 'face', name: 'Selfie'}
-                ],
-                onChange (step) {
-                    console.log(step)
-                },
-                onReset (steps) {
-                    console.log(steps)
-                },
-                submit (data) {
-                    let backStep = data.steps.find(item => item.type === 'back')
-                    let trackString = (backStep && backStep.trackString) ? backStep.trackString : ''
+            this.state.component = new IDVC({
+              networkUrl: "networks",
+              el: "videoCapturingEl",
+              licenseKey: "REPLACE_ME",
+              types: ["ID"],
+              showSubmitBtn: true,
+              steps: [
+                { type: "front", name: "Front Scan" },
+                { type: "back", name: "Back Scan" },
+                { type: "face", name: "Selfie" },
+              ],
+              onChange(step) {
+                console.log(step);
+              },
+              onReset(steps) {
+                console.log(steps);
+              },
+              submit(data) {
+                let backStep = data.steps.find((item) => item.type === "back");
+                let trackString =
+                  backStep && backStep.trackString ? backStep.trackString : "";
 
-                    let request = {
-                        frontImageBase64: data.steps.find (item => item.type === 'front').img.split (/:image\/(jpeg|png);base64,/)[2],
-                        backOrSecondImageBase64: backStep.img.split (/:image\/(jpeg|png);base64,/)[2],
-                        faceImageBase64: data.steps.find (item => item.type === 'face').img.split (/:image\/(jpeg|png);base64,/)[2],
-                        documentType: data.documentType,
-                        trackString: trackString
-                    }
-                    _t.setState({isLoading: true})
-                    fetch ('https://dvs2.idware.net/api/Request', {
-                        method: 'POST',
+                let request = {
+                  frontImageBase64: data.steps
+                    .find((item) => item.type === "front")
+                    .img.split(/:image\/(jpeg|png);base64,/)[2],
+                  backOrSecondImageBase64: backStep.img.split(
+                    /:image\/(jpeg|png);base64,/
+                  )[2],
+                  faceImageBase64: data.steps
+                    .find((item) => item.type === "face")
+                    .img.split(/:image\/(jpeg|png);base64,/)[2],
+                  documentType: data.documentType,
+                  trackString: trackString,
+                };
+                _t.setState({ isLoading: true });
+                fetch("https://dvs2.idware.net/api/Request", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json;charset=utf-8",
+                    Authorization: `Bearer REPLACE_ME`,
+                  },
+                  body: JSON.stringify(request),
+                })
+                  .then((response) => response.json())
+                  .then((response) => {
+                    fetch(
+                      ""REPLACE_ME"/api/ValidationRequests/complete/",
+                      {
+                        method: "POST",
                         headers: {
-                            'Content-Type': 'application/json;charset=utf-8',
-                            'Authorization': `Bearer ${this.publicKey}`
+                          "Content-Type": "application/json;charset=utf-8",
                         },
-                        body: JSON.stringify (request)
-                    }).then (response => response.json ())
-                        .then (response => {
-                            fetch ( this.backendServerUrl + '/api/ValidationRequests/complete/' , {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json;charset=utf-8'
-                                },
-                                body: JSON.stringify ({
-                                    requestId: response.requestId,
-                                    documentType: response.documentType
-                                })
-                            }).then (response => response.json ())
-                                .then (data => {
-                                    _t.setState({isLoading: false})
-                                    alert((data.payload.isDocumentSuccess) ? 'Document valid' : 'Document invalid')
-                                })
-                        }).catch(() => {
-                        _t.setState({isLoading: false})
-                    })
-                }
-            })
+                        body: JSON.stringify({
+                          requestId: response.requestId,
+                        }),
+                      }
+                    )
+                      .then((response) => response.json())
+                      .then((data) => {
+                        _t.setState({ isLoading: false });
+                        alert(
+                          data.payload.isDocumentSuccess
+                            ? "Document valid"
+                            : "Document invalid"
+                        );
+                      });
+                  })
+                  .catch(() => {
+                    _t.setState({ isLoading: false });
+                  });
+              },
+            });
         }
     }
     
