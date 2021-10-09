@@ -26,12 +26,11 @@ class App extends Component {
             this.state.component = new IDVC({
               networkUrl: "networks",
               el: "videoCapturingEl",
-              licenseKey: "",
+              licenseKey: "REPLACE ME WITH YOUR LICENSE KEY",
               types: ["ID"],
               showSubmitBtn: true,
               steps: [
                 { type: "front", name: "Front Scan" },
-                { type: "back", name: "Back Scan" },
                 { type: "face", name: "Selfie" },
               ],
               onChange(step) {
@@ -63,14 +62,14 @@ class App extends Component {
                   method: "POST",
                   headers: {
                     "Content-Type": "application/json;charset=utf-8",
-                    Authorization: `Bearer `,
+                    Authorization: `Bearer [REPLACE ME WITH YOUR PUBLIC KEY]`,
                   },
                   body: JSON.stringify(request),
                 })
                   .then((response) => response.json())
                   .then((response) => {
                     fetch(
-                      "" + "/api/ValidationRequests/complete/",
+                      "REPLACE ME WITH YOUR BACKEND SERVICE URL",
                       {
                         method: "POST",
                         headers: {
@@ -84,11 +83,7 @@ class App extends Component {
                       .then((response) => response.json())
                       .then((data) => {
                         _t.setState({ isLoading: false });
-                        alert(
-                          data.payload.isDocumentSuccess
-                            ? "Document valid"
-                            : "Document invalid"
-                        );
+                        console.log(data);
                       });
                   })
                   .catch(() => {
