@@ -1,33 +1,21 @@
 # DVS Web API React Sample Application
 
-1. Install project dependencies
+1. First download  all the app's dependencies
+
 ```
 npm install
 ```
 
-
-# Deploy to Firebase
-
-1. Install the Firebase CLI
+2. Next download the latest version of the IDscan.net web library
 
 ```
-npm install -g firebase-tools
+npm install @idscan/idvc2@latest
 ```
 
-2. Login in to Firebase
-```
-firebase login
-```
-
-3. Setup the firebase project we are deploying to
-```
-firebase init
-```
-
-1. Deploy the project to firebase
+3. Next build the application
 
 ```
-firebase deploy
+npm run build
 ```
 
 
