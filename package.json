@@ -3,19 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
-    "@idscan/idvc": "^1.12.3",
-    "gulp": "^4.0.2"
+    "@idscan/idvc2": "^2.1.5"
   },
   "scripts": {
     "start": "react-scripts --max_old_space_size=4096 start",
     "build": "react-scripts --max_old_space_size=4096 build",
-    "eject": "react-scripts eject",
-    "copyNetworks": "gulp"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

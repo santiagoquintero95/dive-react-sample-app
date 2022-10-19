@@ -5,12 +5,6 @@
 npm install
 ```
 
-2. Copy over the neural network binary files to the public directory
-```
-npm run copyNetworks
-```
-
-
 
 # Deploy to Firebase
 
