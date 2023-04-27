@@ -1,4 +1,4 @@
-# DVS Web API React Sample Application
+# DIVE Web API React Sample Application
 
 1. First download  all the app's dependencies
 
