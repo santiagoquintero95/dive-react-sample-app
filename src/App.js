@@ -11,16 +11,23 @@ class App extends Component {
     componentDidMount () {
     let idvc = new IDVC({
       el: "videoCapturingEl",
-      licenseKey: "LICENSE_KEY",
+      licenseKey: "eyJwZGY0MTdrZXkiOiJ6YkRIUStyUnpqeWNmaWxBdGlwdzRuYzVkSlV5Q0hSSElncUx0OGl1djVCdFFkSFBoVVZnVUtpTy9KU0VqMmgxOXdYVHplbGp1THJoTXJNWVdXQVZRdHZiUXR4b1hBeHBod3grMXpDY2xRWlZ4OHBkMFJFd1lGTm92MFh0aW9PRXhzWlM5d281dDZsQU9wMEFxOGJPMTFVVnU4UDF6QzQ1MExzdytWSGI0Z2c9IiwiaW1hZ2VQcm9jZXNzaW5nS2V5IjoiVUErQVBybGRIVktvSDVPMVdqRDZCUWZDYjV2ZFlOK3pZTm15WWdXVG9zTjNDRk1DM3V3S24xam5Ydi94UzZJZ0lCZUI0cTBoQ2hhOVc4Sm43UE1OK0FJcUk5OVVyVUg2RWN2Yk9iMnR5ZDllbXBMTTBCbEVsTytSNDczTHdHN3V3aS9ZNmZXVG9yejRHOGxkY0ZNbmsrVlY0ZXBIbzlpcTMvSFg0SERmUUVZPSIsInRyYWNrU3RyaW5nUGFyc2VyS2V5IjoibyswM1loVWgvQStXMUdzTE9pcEtSQ2FkSFdxelRYMHlGV01tK0xHc0hnMXhvVlhVVlpsUzhIeE92YWRyb2h2WGx5QlVYNDdnck5wZmZtaU9hOUw3R3laZnh3OHJJUDhJUGM3OS92aTlaazdneWFXMGxYQmpISmNoaXZxZlFvbCtkNFVCZm5FOUpzRnJrUDBWbWRGVDk3Zk95VUUwUmp4K0IvYnpQcjhweDhBPSIsImNvbW1vbkxpY2Vuc2VLZXkiOiJIemRURUx0RWplZlVlcDY2L3YzSnE5bmp5NlNoZ2ZUWmhWS1RNZGZkbXdZSkJEcUgxRGd3czBkbDlaRjdLMmxlcjVCYjJMOEdFZVFRSmhDTVMzUEovQUVFRmluSy8yVEQ1Ry9peGRyTkx3Mk1XVGVSNS84dnkxaDlGeVBjZXBJNytRemswQmMrUTRnNUJtYm1CaTVEOEppaEdEaUpTcjVHSm1LUkhCNFBZekk9In0=",
       networkUrl: "networks",
-      resizeUploadedImage: 1600,
-      fixFrontOrientAfterUpload: true,
+      chunkPublicPath: "networks",
+      resizeUploadedImage: 1200,
+      fixFrontOrientAfterUpload: false,
       autoContinue: true,
-      isShowDocumentTypeSelect: true,
-      realFaceMode: "auto",
-      useCDN: true,
+      isShowDocumentTypeSelect: false,
+      useCDN: false,
+      isShowGuidelinesButton: false,
+      isSubmitMetaData: false,
+      useHeic: false,
+      showSubmitBtn: false,
+      hideDocumentTitle: false,
       language: "en",
-      isShowGuidelinesButton: true,
+      realFaceMode: "auto",
+      modalPosition: 'top',
+      processingImageFormat: 'jpeg',
       documentTypes: [
         {
           type: "ID",
@@ -28,17 +35,14 @@ class App extends Component {
             {
               type: "front",
               name: "Document Front",
-              mode: { uploader: true, video: true },
             },
             {
               type: "pdf",
-              name: "Document PDF417 Barcode",
-              mode: { uploader: true, video: true },
+              name: "Document Back",
             },
             {
               type: "face",
               name: "Face",
-              mode: { uploader: true, video: true },
             },
           ],
         },
@@ -48,15 +52,48 @@ class App extends Component {
             {
               type: "mrz",
               name: "Passport Front",
-              mode: { uploader: true, video: true },
             },
             {
               type: "face",
               name: "Face",
-              mode: { uploader: true, video: true },
             },
           ],
         },
+        {
+          type: "PassportCard",
+          steps: [
+            {
+              type: "front",
+              name: "Passport Card Front",
+            },
+            {
+              type: "mrz",
+              name: "Passport Card Back",
+            },
+            {
+              type: "face",
+              name: "Face",
+            },
+          ],
+        },
+    
+        {
+          type: "InternationalId",
+          steps: [
+            {
+              type: "front",
+              name: "International ID Front",
+            },
+            {
+              type: "mrz",
+              name: "International ID Back",
+            },
+            {
+              type: "face",
+              name: "Face",
+            },
+          ],
+        }
       ],
       onChange(data) {
         console.log("on change", data);
@@ -77,9 +114,8 @@ class App extends Component {
         idvc.showSpinner(true);
         let frontStep, pdfStep, faceStep, mrzStep, photoStep, barcodeStep;
         let frontImage, backImage, faceImage, photoImage, barcodeImage;
-        let trackString;
         let captureMethod;
-        let verifyFace = true;
+        let rawTrackString;
 
         switch (data.documentType) {
           // Drivers License and Identification Card
@@ -92,7 +128,7 @@ class App extends Component {
             backImage = pdfStep.img.split(/:image\/(jpeg|png);base64,/)[2];
             faceImage = faceStep.img.split(/:image\/(jpeg|png);base64,/)[2];
 
-            trackString =
+            rawTrackString =
               pdfStep && pdfStep.trackString ? pdfStep.trackString : "";
 
             captureMethod =
@@ -109,69 +145,44 @@ class App extends Component {
             frontImage = mrzStep.img.split(/:image\/(jpeg|png);base64,/)[2];
             faceImage = faceStep.img.split(/:image\/(jpeg|png);base64,/)[2];
 
-            trackString = mrzStep && mrzStep.mrzText ? mrzStep.mrzText : "";
+            rawTrackString = mrzStep && mrzStep.mrzText ? mrzStep.mrzText : "";
 
             captureMethod =
               JSON.stringify(+mrzStep.isAuto) +
               JSON.stringify(+faceStep.isAuto);
 
-            break;
-          // US Passport Cards
-          case 3:
-          // US Green Cards
-          case 6:
-          // International IDs with 3 line MRZs
-          case 7:
-            frontStep = data.steps.find((item) => item.type === "front");
-            mrzStep = data.steps.find((item) => item.type === "mrz");
-            faceStep = data.steps.find((item) => item.type === "face");
-
-            frontImage = frontStep.img.split(/:image\/(jpeg|png);base64,/)[2];
-            backImage = mrzStep.img.split(/:image\/(jpeg|png);base64,/)[2];
-            faceImage = faceStep.img.split(/:image\/(jpeg|png);base64,/)[2];
-
-            trackString = mrzStep && mrzStep.mrzText ? mrzStep.mrzText : "";
-
-            captureMethod =
-              JSON.stringify(+frontStep.isAuto) +
-              JSON.stringify(+mrzStep.isAuto) +
-              JSON.stringify(+faceStep.isAuto);
-
-            break;
-          case 8:
-            photoStep = data.steps.find((item) => item.type === "photo");
-            photoImage = photoStep.img.split(/:image\/(jpeg|png);base64,/)[2];
-            captureMethod = JSON.stringify(+photoStep.isAuto);
-            verifyFace = false;
-            break;
-          case 9:
-            barcodeStep = data.steps.find((item) => item.type === "barcode");
-            barcodeImage = barcodeStep.img.split(
-              /:image\/(jpeg|png);base64,/
-            )[2];
-            captureMethod = JSON.stringify(+barcodeStep.isAuto);
-            verifyFace = false;
             break;
           default:
         }
 
+        const trackStringArray = rawTrackString.split(".");
+        let trackString = trackStringArray[0];
+        let barcodeParams = trackStringArray[1];
+  
+    
         let request = {
           frontImageBase64: frontImage,
           backOrSecondImageBase64: backImage,
           faceImageBase64: faceImage,
           documentType: data.documentType,
-          trackString: trackString,
-          ssn: null,
-          overriddenSettings: null,
-          userAgent: window.navigator.userAgent,
-          captureMethod: captureMethod,
-          verifyFace: verifyFace,
+          trackString:{
+            data:  trackString,
+            barcodeParams: barcodeParams
+          },
+          overriddenSettings: {
+            isOCREnabled: true,
+            isBackOrSecondImageProcessingEnabled: true,
+            isFaceMatchEnabled: true
+          },
+          metadata: {
+            captureMethod: captureMethod
+          }
         };
 
-        fetch("https://dvs2.idware.net/api/v3/Verify", {
+        fetch("https://dvs2.idware.net/api/v4/verify", {
           method: "POST",
           headers: {
-            Authorization: "Bearer SECRET_KEY",
+            Authorization: "Bearer sk_a9a9bc2b-5ad0-4ded-95f4-e58c03e2c36a",
             "Content-Type": "application/json;charset=utf-8",
           },
           body: JSON.stringify(request),

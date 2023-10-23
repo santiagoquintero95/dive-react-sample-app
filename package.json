@@ -8,7 +8,7 @@
     "react-scripts": "^5.0.1"
   },
   "devDependencies": {
-    "@idscan/idvc2": "^2.1.5"
+    "@idscan/idvc2": "^2.7.8"
   },
   "scripts": {
     "start": "react-scripts --max_old_space_size=4096 start",
