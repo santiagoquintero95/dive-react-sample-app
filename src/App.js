@@ -11,7 +11,7 @@ class App extends Component {
     componentDidMount () {
     let idvc = new IDVC({
       el: "videoCapturingEl",
-      licenseKey: "eyJwZGY0MTdrZXkiOiJ6YkRIUStyUnpqeWNmaWxBdGlwdzRuYzVkSlV5Q0hSSElncUx0OGl1djVCdFFkSFBoVVZnVUtpTy9KU0VqMmgxOXdYVHplbGp1THJoTXJNWVdXQVZRdHZiUXR4b1hBeHBod3grMXpDY2xRWlZ4OHBkMFJFd1lGTm92MFh0aW9PRXhzWlM5d281dDZsQU9wMEFxOGJPMTFVVnU4UDF6QzQ1MExzdytWSGI0Z2c9IiwiaW1hZ2VQcm9jZXNzaW5nS2V5IjoiVUErQVBybGRIVktvSDVPMVdqRDZCUWZDYjV2ZFlOK3pZTm15WWdXVG9zTjNDRk1DM3V3S24xam5Ydi94UzZJZ0lCZUI0cTBoQ2hhOVc4Sm43UE1OK0FJcUk5OVVyVUg2RWN2Yk9iMnR5ZDllbXBMTTBCbEVsTytSNDczTHdHN3V3aS9ZNmZXVG9yejRHOGxkY0ZNbmsrVlY0ZXBIbzlpcTMvSFg0SERmUUVZPSIsInRyYWNrU3RyaW5nUGFyc2VyS2V5IjoibyswM1loVWgvQStXMUdzTE9pcEtSQ2FkSFdxelRYMHlGV01tK0xHc0hnMXhvVlhVVlpsUzhIeE92YWRyb2h2WGx5QlVYNDdnck5wZmZtaU9hOUw3R3laZnh3OHJJUDhJUGM3OS92aTlaazdneWFXMGxYQmpISmNoaXZxZlFvbCtkNFVCZm5FOUpzRnJrUDBWbWRGVDk3Zk95VUUwUmp4K0IvYnpQcjhweDhBPSIsImNvbW1vbkxpY2Vuc2VLZXkiOiJIemRURUx0RWplZlVlcDY2L3YzSnE5bmp5NlNoZ2ZUWmhWS1RNZGZkbXdZSkJEcUgxRGd3czBkbDlaRjdLMmxlcjVCYjJMOEdFZVFRSmhDTVMzUEovQUVFRmluSy8yVEQ1Ry9peGRyTkx3Mk1XVGVSNS84dnkxaDlGeVBjZXBJNytRemswQmMrUTRnNUJtYm1CaTVEOEppaEdEaUpTcjVHSm1LUkhCNFBZekk9In0=",
+      licenseKey: "LICENSE_KEY",
       networkUrl: "networks",
       chunkPublicPath: "networks",
       resizeUploadedImage: 1200,
@@ -182,7 +182,7 @@ class App extends Component {
         fetch("https://dvs2.idware.net/api/v4/verify", {
           method: "POST",
           headers: {
-            Authorization: "Bearer sk_a9a9bc2b-5ad0-4ded-95f4-e58c03e2c36a",
+            Authorization: "Bearer SECRET_KEY",
             "Content-Type": "application/json;charset=utf-8",
           },
           body: JSON.stringify(request),
