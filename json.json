@@ -1,0 +1,513 @@
+{
+    "requestId": "02b48dfd-7eb7-4454-bcdf-359bc173dd22",
+    "document": {
+        "ssn": null,
+        "suffix": null,
+        "abbr3Country": "USA",
+        "abbrCountry": null,
+        "address": "1909 BLUE CREST DR",
+        "city": "AUSTIN",
+        "class": "CM",
+        "country": "UNITED STATES OF AMERICA",
+        "dob": "1964-12-02",
+        "expires": "2028-12-02",
+        "eyes": "BLUE",
+        "familyName": "HANSEN",
+        "firstName": "GREGG",
+        "fullName": "GREGG MACDONALD HANSEN",
+        "gender": "MALE",
+        "hair": "BLONDE",
+        "height": "72",
+        "id": "10752930",
+        "idType": "DL",
+        "issued": "2020-10-10",
+        "maidenName": null,
+        "middleName": "MACDONALD",
+        "placeOfBirth": null,
+        "postalBox": null,
+        "state": "TX",
+        "issuedBy": "TX",
+        "weight": "195",
+        "zip": "78704-0000"
+    },
+    "documentVerificationResult": {
+        "isDocumentExpired": false,
+        "isOcrSuccess": true,
+        "isPdf417Success": true,
+        "isMrzSuccess": null,
+        "isShuftiSuccess": null,
+        "isDriversLicenseRealID": true,
+        "isDriveOnly": false,
+        "isVeteran": null,
+        "isDonor": true,
+        "documentConfidence": 100
+    },
+    "faceMatchVerificationResult": {
+        "falseAcceptanceRate": 0,
+        "faceMatchConfidence": 96,
+        "isAgeCheckSuccess": null,
+        "isGenderCheckSuccess": null,
+        "assessedAgeFromSelfie": 54
+    },
+    "antiSpoofingVerificationResult": {
+        "antiSpoofingFaceImageConfidence": 99,
+        "isDataFieldsTampered": true,
+        "isPhotoFromDocumentTampered": false
+    },
+    "externalVerificationResults": [
+        {
+            "values": [
+                {
+                    "priority": 0,
+                    "score": 100,
+                    "effect": 0,
+                    "fieldName": "Address"
+                }
+            ],
+            "status": 1,
+            "rawResponse": {
+                "zipValid": true,
+                "zipStateValid": true,
+                "zipCityStateValid": true,
+                "addressValid": true,
+                "secAbbrValid": null,
+                "plus4Valid": null,
+                "zipValidMessage": null,
+                "zipStateValidMessage": null,
+                "zipCityStateValidMessage": null,
+                "addressValidMessage": null,
+                "secAbbrValidMessage": null,
+                "plus4ValidMessage": null,
+                "addresses": [
+                    {
+                        "fullAddress": "1909 BLUE CREST DR AUSTIN TX 78704",
+                        "addressLine": "BLUE CREST DR AUSTIN TX 78704",
+                        "zipCode": "78704",
+                        "stPreDirAbbr": null,
+                        "stName": "BLUE CREST",
+                        "stSuffixAbbr": "DR",
+                        "stPostDirAbbr": null,
+                        "addressPrimaryLowNumber": "0000001901",
+                        "addressPrimaryHighNumber": "0000001999",
+                        "city": "AUSTIN",
+                        "state": "TX",
+                        "cityAliasName": "AUSTIN",
+                        "cityAliasAbbreviation": null,
+                        "fromLatitude": 30.250104,
+                        "toLatitude": 30.25062,
+                        "fromLongitude": -97.773897,
+                        "toLongitude": -97.774808,
+                        "rank": 232,
+                        "coordinatesAreCalculated": false,
+                        "fromCache": true,
+                        "input": null,
+                        "updateKey": "W229619228",
+                        "message": null,
+                        "country": null
+                    }
+                ],
+                "isValid": true,
+                "message": null
+            },
+            "name": "AddressValidation",
+            "displayName": "Address",
+            "reason": null,
+            "effect": 1
+        },
+        {
+            "values": [
+                {
+                    "priority": 2,
+                    "score": 100,
+                    "effect": 0,
+                    "fieldName": "FullName"
+                },
+                {
+                    "priority": 2,
+                    "score": 100,
+                    "effect": 0,
+                    "fieldName": "ID"
+                },
+                {
+                    "priority": 2,
+                    "score": 100,
+                    "effect": 0,
+                    "fieldName": "Dob"
+                },
+                {
+                    "priority": 2,
+                    "score": 100,
+                    "effect": 0,
+                    "fieldName": "Expires"
+                },
+                {
+                    "priority": 2,
+                    "score": 100,
+                    "effect": 0,
+                    "fieldName": "State"
+                },
+                {
+                    "priority": 2,
+                    "score": 100,
+                    "effect": 0,
+                    "fieldName": "Zip"
+                },
+                {
+                    "priority": 1,
+                    "score": 100,
+                    "effect": 0,
+                    "fieldName": "Issued"
+                }
+            ],
+            "status": 1,
+            "rawResponse": {
+                "documentCategoryMatch": null,
+                "personLastNameExactMatch": true,
+                "personLastNameFuzzyPrimaryMatch": null,
+                "personLastNameFuzzyAlternateMatch": null,
+                "personFirstNameExactMatch": true,
+                "personFirstNameFuzzyPrimaryMatch": null,
+                "personFirstNameFuzzyAlternateMatch": null,
+                "personMiddleNameExactMatch": null,
+                "personMiddleNameFuzzyPrimaryMatch": null,
+                "personMiddleNameFuzzyAlternateMatch": null,
+                "personMiddleInitialMatch": null,
+                "personBirthDateMatch": true,
+                "driverLicenseIssueDateMatch": true,
+                "driverLicenseExpirationDateMatch": true,
+                "driverLicenseNumberMatch": true,
+                "addressLine1Match": true,
+                "addressLine2Match": null,
+                "addressCityMatch": true,
+                "addressStateCodeMatch": true,
+                "addressZIP5Match": true,
+                "addressZIP4Match": null,
+                "personSexCodeMatch": null,
+                "addressLine1FuzzyMatch": null
+            },
+            "name": "DMVValidation",
+            "displayName": "DMV",
+            "reason": null,
+            "effect": 1
+        },
+        {
+            "values": [
+                {
+                    "priority": 2,
+                    "score": 100,
+                    "effect": 0,
+                    "fieldName": "State"
+                },
+                {
+                    "priority": 2,
+                    "score": 100,
+                    "effect": 0,
+                    "fieldName": "Zip"
+                },
+                {
+                    "priority": 1,
+                    "score": 100,
+                    "effect": 0,
+                    "fieldName": "Country"
+                },
+                {
+                    "priority": 2,
+                    "score": 100,
+                    "effect": 0,
+                    "fieldName": "Dob"
+                },
+                {
+                    "priority": 1,
+                    "score": 100,
+                    "effect": 0,
+                    "fieldName": "IDType"
+                },
+                {
+                    "priority": 2,
+                    "score": 100,
+                    "effect": 0,
+                    "fieldName": "ID"
+                },
+                {
+                    "priority": 2,
+                    "score": 100,
+                    "effect": 0,
+                    "fieldName": "FullName"
+                }
+            ],
+            "status": 1,
+            "rawResponse": {
+                "verified": true,
+                "data": {
+                    "questions": [
+                        {
+                            "text": "Which one of the following addresses is associated with you?",
+                            "questionType": 1,
+                            "answers": [
+                                {
+                                    "text": "3837 RIVERDELL",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "4111 ALDAMA DR",
+                                    "isCorrect": true
+                                },
+                                {
+                                    "text": "266 COMANCHE",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "2216 KELLYWOOD DR",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "None of the above",
+                                    "isCorrect": false
+                                }
+                            ]
+                        },
+                        {
+                            "text": "Which one of the following area codes is associated with you?",
+                            "questionType": 2,
+                            "answers": [
+                                {
+                                    "text": "940",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "346/832/979",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "512/737",
+                                    "isCorrect": true
+                                },
+                                {
+                                    "text": "210/726",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "None of the above",
+                                    "isCorrect": false
+                                }
+                            ]
+                        },
+                        {
+                            "text": "Which one of the following counties is associated with you?",
+                            "questionType": 3,
+                            "answers": [
+                                {
+                                    "text": "Trinity",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "San Jacinto",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "Aransas",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "Travis",
+                                    "isCorrect": true
+                                },
+                                {
+                                    "text": "None of the above",
+                                    "isCorrect": false
+                                }
+                            ]
+                        },
+                        {
+                            "text": "Which one of the following zip codes is associated with you?",
+                            "questionType": 4,
+                            "answers": [
+                                {
+                                    "text": "78327",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "78705",
+                                    "isCorrect": true
+                                },
+                                {
+                                    "text": "78727",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "78856",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "None of the above",
+                                    "isCorrect": false
+                                }
+                            ]
+                        },
+                        {
+                            "text": "What state was your SSN issued in?",
+                            "questionType": 5,
+                            "answers": [
+                                {
+                                    "text": "South Carolina",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "Washington",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "Virginia",
+                                    "isCorrect": true
+                                },
+                                {
+                                    "text": "Louisiana",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "None of the above",
+                                    "isCorrect": false
+                                }
+                            ]
+                        },
+                        {
+                            "text": "Which one of the following adult individuals is most closely associated with you?",
+                            "questionType": 6,
+                            "answers": [
+                                {
+                                    "text": "Aidan",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "Wyatt",
+                                    "isCorrect": true
+                                },
+                                {
+                                    "text": "Christopher",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "William",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "None of the above",
+                                    "isCorrect": false
+                                }
+                            ]
+                        },
+                        {
+                            "text": "What are the first 3 digits of your SSN?",
+                            "questionType": 8,
+                            "answers": [
+                                {
+                                    "text": "754",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "870",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "431",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "394",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "None of the above",
+                                    "isCorrect": true
+                                }
+                            ]
+                        },
+                        {
+                            "text": "What was the zip code for the address on PRADERA DR?",
+                            "questionType": 9,
+                            "answers": [
+                                {
+                                    "text": "78759",
+                                    "isCorrect": true
+                                },
+                                {
+                                    "text": "78856",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "78368",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "78327",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "None of the above",
+                                    "isCorrect": false
+                                }
+                            ]
+                        },
+                        {
+                            "text": "What was the house number for the address on PRADERA DR?",
+                            "questionType": 10,
+                            "answers": [
+                                {
+                                    "text": "11309",
+                                    "isCorrect": true
+                                },
+                                {
+                                    "text": "85794",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "37460",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "33388",
+                                    "isCorrect": false
+                                },
+                                {
+                                    "text": "None of the above",
+                                    "isCorrect": false
+                                }
+                            ]
+                        }
+                    ],
+                    "addressVerificationResult": {
+                        "code": "A1",
+                        "message": "Exact match on first and last name; Exact match on address"
+                    },
+                    "dateOfBirthResult": {
+                        "code": "9",
+                        "message": "Full DOB available and input matches exactly."
+                    },
+                    "driverLicenseResult": {
+                        "code": "Y",
+                        "message": "Submitted DL matches to full name only."
+                    },
+                    "ssnResult": {
+                        "code": "YB",
+                        "message": "Match to full name and address using entered name and address."
+                    },
+                    "workflowOutcome": {
+                        "code": "P",
+                        "message": "Pass"
+                    },
+                    "ofacValidationResult": {
+                        "code": "1",
+                        "message": "No match to name or address."
+                    }
+                }
+            },
+            "name": "IdentiFraudValidation",
+            "displayName": "IdentiFraud",
+            "reason": null,
+            "effect": 1
+        }
+    ],
+    "authenticationResults": [],
+    "requestData": null,
+    "images": null
+}

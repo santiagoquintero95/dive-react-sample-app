@@ -1,17 +1,16 @@
 import React, { Component } from "react";
-import IDVC from '@idscan/idvc2'
-import  '@idscan/idvc2/dist/css/idvc.css'
+import IDVC from "@idscan/idvc2";
+import "@idscan/idvc2/dist/css/idvc.css";
 
 class App extends Component {
-      
-    constructor() {
-      super();
-    }
+  constructor() {
+    super();
+  }
 
-    componentDidMount () {
+  componentDidMount() {
     let idvc = new IDVC({
       el: "videoCapturingEl",
-      licenseKey: "LICENSE_KEY",
+      licenseKey: process.env.REACT_APP_LICENSE_KEY,
       networkUrl: "networks",
       chunkPublicPath: "networks",
       resizeUploadedImage: 1200,
@@ -26,8 +25,8 @@ class App extends Component {
       hideDocumentTitle: false,
       language: "en",
       realFaceMode: "auto",
-      modalPosition: 'top',
-      processingImageFormat: 'jpeg',
+      modalPosition: "top",
+      processingImageFormat: "jpeg",
       documentTypes: [
         {
           type: "ID",
@@ -76,7 +75,7 @@ class App extends Component {
             },
           ],
         },
-    
+
         {
           type: "InternationalId",
           steps: [
@@ -93,7 +92,7 @@ class App extends Component {
               name: "Face",
             },
           ],
-        }
+        },
       ],
       onChange(data) {
         console.log("on change", data);
@@ -158,31 +157,30 @@ class App extends Component {
         const trackStringArray = rawTrackString.split(".");
         let trackString = trackStringArray[0];
         let barcodeParams = trackStringArray[1];
-  
-    
+
         let request = {
           frontImageBase64: frontImage,
           backOrSecondImageBase64: backImage,
           faceImageBase64: faceImage,
           documentType: data.documentType,
-          trackString:{
-            data:  trackString,
-            barcodeParams: barcodeParams
+          trackString: {
+            data: trackString,
+            barcodeParams: barcodeParams,
           },
           overriddenSettings: {
             isOCREnabled: true,
             isBackOrSecondImageProcessingEnabled: true,
-            isFaceMatchEnabled: true
+            isFaceMatchEnabled: true,
           },
           metadata: {
-            captureMethod: captureMethod
-          }
+            captureMethod: captureMethod,
+          },
         };
 
         fetch("https://dvs2.idware.net/api/v4/verify", {
           method: "POST",
           headers: {
-            Authorization: "Bearer SECRET_KEY",
+            Authorization: "Bearer " + process.env.REACT_APP_SECRET_KEY,
             "Content-Type": "application/json;charset=utf-8",
           },
           body: JSON.stringify(request),
@@ -197,17 +195,17 @@ class App extends Component {
             console.log(err);
           });
       },
-    });     
-    }
-    
-    render () {        
-        return (
-            <div>
-                <h3>DVS Demo Application</h3>
-                <div id="videoCapturingEl"></div>
-            </div>
-        );
-    }
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h3>DVS Demo Application</h3>
+        <div id="videoCapturingEl"></div>
+      </div>
+    );
+  }
 }
 
 export default App;
